@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Cheese Burger", "price": 39, "category": "Burger"},
+    { "id": 2, "name": "Double Cheese Burger", "price": 79, "category": "Burger"},
+    { "id": 3, "name": "Original Fries", "price": 35, "category": "Sides"},
+    { "id": 4, "name": "Milkshake Chocolate", "price": 45, "category": "Drinks"}
+]
