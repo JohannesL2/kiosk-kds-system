@@ -1,16 +1,57 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Kiosk & Kitchen Display System (KDS)**
 
-Currently, two official plugins are available:
+A real-time order management system built with React (Vite), Node.js, and Socket.io.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  
 
-## React Compiler
+🚀 Quick Start with Docker
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The easiest way to run the entire stack (Frontend + Backend) is using Docker Compose.
 
-## Expanding the ESLint configuration
+  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Start the system:
+
+  
+
+    Bash
+    
+    docker-compose up --build
+    
+Access the apps:
+
+  
+
+Kiosk (Customer View): http://localhost:5173
+
+  
+
+Kitchen (KDS View): http://localhost:5173/kitchen
+
+  
+
+Stop the system:
+
+Press Ctrl + C or run:
+
+    Bash
+    
+    docker-compose down
+
+
+**Tech Stack**
+
+Frontend: React + Vite (Port 5173)
+
+  
+
+Backend: Node.js + Express (Port 4000)
+
+  
+
+Real-time: Socket.io (WebSockets)
+
+  
+
+DevOps: Docker & Docker Compose
