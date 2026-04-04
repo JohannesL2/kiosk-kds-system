@@ -5,7 +5,10 @@ import './App.css'
 import KioskView from './pages/KioskView';
 import KitchenView from './pages/KitchenView';
 
-const socket = io('http://localhost:4000');
+const socket = io('http://localhost:4000', {
+  transports: ['websocket'],
+  upgrade: false
+});
 
 function App() {
   return (
