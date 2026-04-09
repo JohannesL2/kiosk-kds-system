@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.menuSection {
+    padding: 40px;
+    overflow-y: auto;
+}

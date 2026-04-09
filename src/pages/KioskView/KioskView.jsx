@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import menuData from '../data/data.json'
+import menuData from '../../data/data.json'
+import styles from './KioskView.module.css'
 
 function KioskView({ socket }) {
   const [cart, setCart] = useState([]);
   
   const addToCart = (item) => {
-    setCart([...cart, { ...item, cartId: Math.random() }]);
+    const uniqueItem = {
+        ...item,
+        cartId: crypto.randomUUID()
+    };
+
+    setCart(prevCart => [...prevCart, uniqueItem]);
   };
 
   const handleCheckout = () => {
@@ -17,7 +23,7 @@ function KioskView({ socket }) {
   };
 
   return (
-<div>
+<div className={styles.container}>
     <div>
         {menuData.map(item => (
             <button key={item.id} onClick={() => addToCart(item)}>
