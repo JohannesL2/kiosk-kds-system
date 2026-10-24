@@ -1,5 +1,7 @@
 # Kiosk & Kitchen Display System (KDS)
 
+<img width="400" alt="demo-picture" src="https://github.com/user-attachments/assets/ab8afa77-b5f9-4853-aeff-34f3783b940e" />
+
 <img width="364" alt="kds-system-flow" src="https://github.com/user-attachments/assets/9a722490-0142-4655-a80b-899fe554857c" />
 
 
