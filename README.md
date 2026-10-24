@@ -1,57 +1,64 @@
+# Kiosk & Kitchen Display System (KDS)
 
-**Kiosk & Kitchen Display System (KDS)**
+A real-time order management system built with React, Vite, Node.js, Express, Socket.IO, and PostgreSQL.
 
-A real-time order management system built with React (Vite), Node.js, and Socket.io.
+Orders submitted from the kiosk are stored in PostgreSQL before being sent to the kitchen. The kitchen view loads saved orders when opened, and marking an order as **Done** updates its status in the database.
 
-  
+## Requirements
 
-🚀 Quick Start with Docker
+- Docker Desktop with Docker Compose
+- Git
 
-The easiest way to run the entire stack (Frontend + Backend) is using Docker Compose.
+## Quick start
 
-  
+Start the app and database from the project directory:
 
-Start the system:
+```bash
+docker compose up --build
+```
 
-  
+On the first run, create the orders table:
 
-    Bash
-    
-    docker-compose up --build
-    
-Access the apps:
+```bash
+docker compose exec db psql -U kiosk -d kiosk -c "CREATE TABLE IF NOT EXISTS orders (id BIGINT PRIMARY KEY, items JSONB NOT NULL, status TEXT NOT NULL DEFAULT 'new');"
+```
 
-  
+If you already have an `orders` table without a `status` column, run this migration once:
 
-Kiosk (Customer View): http://localhost:5173
+```bash
+docker compose exec db psql -U kiosk -d kiosk -c "ALTER TABLE orders ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';"
+```
 
-  
+Open the app:
 
-Kitchen (KDS View): http://localhost:5173/kitchen
+- **Kiosk:** [http://localhost:5173](http://localhost:5173)
+- **Kitchen display:** [http://localhost:5173/kitchen](http://localhost:5173/kitchen)
+- **Orders API:** [http://localhost:4000/orders](http://localhost:4000/orders)
 
-  
+Press `Ctrl+C` to stop the foreground Compose process, or run:
 
-Stop the system:
+```bash
+docker compose down
+```
 
-Press Ctrl + C or run:
+Order data is stored in a Docker volume and remains available after stopping and restarting the containers. To remove the containers **and permanently delete the database volume and its data**, run:
 
-    Bash
-    
-    docker-compose down
+```bash
+docker compose down -v
+```
 
+## Order flow
 
-**Tech Stack**
+1. A customer adds menu items and submits an order from the kiosk.
+2. The backend saves the order with a `new` status in PostgreSQL.
+3. After saving, the backend broadcasts the order to connected kitchen displays using Socket.IO.
+4. The kitchen view loads orders from the API when opened.
+5. When staff mark an order as **Done**, its status is updated to `completed` in PostgreSQL and it is removed from the active kitchen view.
 
-Frontend: React + Vite (Port 5173)
+## Tech stack
 
-  
-
-Backend: Node.js + Express (Port 4000)
-
-  
-
-Real-time: Socket.io (WebSockets)
-
-  
-
-DevOps: Docker & Docker Compose
+- **Frontend:** React, Vite
+- **Backend:** Node.js, Express
+- **Communication:** Socket.IO
+- **Database:** PostgreSQL
+- **Local Development:** Docker Compose
